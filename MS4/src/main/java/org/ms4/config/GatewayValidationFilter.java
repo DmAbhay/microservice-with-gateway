@@ -1,0 +1,32 @@
+package org.ms4.config;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+@Component
+public class GatewayValidationFilter extends OncePerRequestFilter {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        String header = request.getHeader("X-GATEWAY-KEY");
+        String name = request.getParameter("name");
+
+        System.out.println("RequestParam in Filter Chain : "+name);
+        if (!"explore-secure".equals(header)) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.getWriter().write("Blocked: Only API Gateway Access Allowed");
+            return;
+        }
+
+        filterChain.doFilter(request, response);
+    }
+
+
+}
+
