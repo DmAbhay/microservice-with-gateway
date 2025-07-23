@@ -20,6 +20,7 @@ public class TestController {
         obj.put("name", "Abhay");
         obj.put("age", 30);
         obj.put("city", "Lucknow");
+        System.out.println(System.getProperty("CONFIG_DIR"));
 
         System.out.println("JSON Output: " + obj.toString());
         System.out.println("RequestParam is : "+name);
@@ -33,12 +34,10 @@ public class TestController {
     public ResponseEntity<?> testPost(@RequestBody JsonNode payload){
 
         System.out.println(payload.toPrettyString());
-
         System.out.println("Response from instance running on port: " + port);
-
+        System.out.println(System.getProperty("CONFIG_DIR"));
         //return ResponseEntity.ok("ms4 test controller hit\nResponse from instance running on port: " + port+"\n"+payload);
         return ResponseEntity.ok(payload);
     }
-
 
 }

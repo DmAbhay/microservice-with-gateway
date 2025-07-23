@@ -9,7 +9,6 @@ public class TestController {
 
     @GetMapping("/hit-ms1")
     public ResponseEntity<?> test(){
-
         return ResponseEntity.ok("ms1 test controller hit");
     }
 }

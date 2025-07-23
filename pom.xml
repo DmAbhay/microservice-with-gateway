@@ -16,6 +16,7 @@
         <module>EurekaServer</module>
         <module>MS4</module>
         <module>ApiGateway</module>
+        <module>Scheduler</module>
     </modules>
 
     <properties>
